@@ -5,9 +5,9 @@ The structure of the cluster is as follows:
 ![](cluster.png)
 |Service|Info|
 |--|--|
-|WebApi| |
-|Consumer| |
-|Storage| |
+|WebApi|Serves the public API using an ASP.NET Core web-controller.|
+|Consumer|A console-application that listens for _'store message'_ commands sent via MassTransit. Processes such commands by storing their content in a database.|
+|Storage|A MongoDB that contains the messages that should be stored.|
 
 # Usage
 ## System Requirements
@@ -18,7 +18,7 @@ The structure of the cluster is as follows:
 2. Send a message by POSTing it to the WebAPI.<br/>
 `curl --request POST --url http://localhost:8080/Messages --header 'Content-Type: application/json' --data '{"sender": "Alice", "recipient": "Bob", "content": "Hello World"}'`
 3. Retrieve the message via GET request. The URL is transmitted in the location header of the POST response.<br/>
-_(Note: Posting a message is an asynchronous operation. It may take time for the system to transport and store the message.)
+_(Note: Posting a message is an asynchronous operation. It may take time for the system to transport and store the message.)_
 4. To retrieve all messages stored in the system, send a GET to the [http://localhost:8080/Messages](/Messages) endpoint.
 
 ## Administration
